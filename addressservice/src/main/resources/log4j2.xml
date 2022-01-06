@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Appenders>
+		<Console name="CONSOLE" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d [%t] %level - %c %msg %n"></PatternLayout>
+		</Console>
+		<RollingFile name="RollingFile" fileName="logs/app.log"
+			filePattern="logs/$${date:yyyy-MM}/app-%d{yyyy-MM-dd-HH}-%i.log.gz">
+			<PatternLayout>
+				<!-- <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>-->
+				<Pattern>%d [%t] %level - %c %msg %n</Pattern> 
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+        		<SizeBasedTriggeringPolicy size="50 KB"/>
+			</Policies>
+		</RollingFile>
+	</Appenders>
+	<Loggers>
+		<Root level="info">
+			<AppenderRef ref="RollingFile" />
+			<AppenderRef ref="CONSOLE" />
+		</Root>
+	</Loggers>
+</Configuration>
